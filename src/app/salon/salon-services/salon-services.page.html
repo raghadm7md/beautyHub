@@ -1,0 +1,60 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>salon services</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content [fullscreen]="true"  class="ion-padding">
+
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-avatar slot="start">
+        <img alt="Silhouette of a person's head" [src]="salonDetails?.logo" />
+      </ion-avatar>
+      <ion-label style="font-size: 20px;"> {{salonDetails?.nameEn}} </ion-label>
+      <!-- <ion-title size="large">{{salonDetails?.nameEn}}</ion-title> -->
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- <img class="img-card" [src]="salonDetails?.logo"> -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title></ion-card-title>
+      <ion-card-subtitle>{{salonDetails?.nameEn}}</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+     <p> {{salonDetails?.descrpitonEn}} </p>
+     <p><strong> Location :</strong>{{salonDetails?.location}}</p>
+     <div class="row">
+      <div class="col-12">
+        
+
+      </div>
+     </div>
+    </ion-card-content>
+  </ion-card>
+
+  <h3>Salon Service:</h3>
+
+    <ion-list  *ngFor="let service of servicesList; let i = index" lines="none">
+      <ion-item>
+        <div class="card" style="width: 100%;" (click)="presentModal(service.serviceId)">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-4">
+                <img class="card-img-top img-fluid" src='./assets/images/Beauty-Salon.jpeg' height="auto">
+              </div>
+              <div class="col-8">
+                <h4 style="margin-bottom: 0px;">{{service?.nameEn}}</h4>
+                <span>price: {{service?.price}} SAR</span>
+                <!-- <button class="btn btn-warning" expand="full"  (click)="presentModal(i)" >Open Sheet Modal</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+
+
+</ion-content>

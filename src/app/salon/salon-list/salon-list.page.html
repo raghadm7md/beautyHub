@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Salons</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Salons</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list  *ngFor="let salon of salons" lines="none">
+    <ion-item>
+      <div class="card">
+        <img class="img-card" [src]="salon.logo">
+        <div class="card-body">
+          <div class="float-end">
+            <button href="javascript: void(0);" class="btn btn-warning btn-rounded btn-sm" [routerLink]="['/salon-service',salon.saloonId]" >View Services</button>
+          </div>
+          <h4 class="card-title mt-0">{{salon.nameEn}}</h4>
+          <p class="card-text">{{salon.location}}</p>
+        </div>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

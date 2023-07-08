@@ -1,0 +1,107 @@
+
+  <ion-header [translucent]="true" *ngIf="allPage">
+  <ion-toolbar>
+    <ion-title>Service details</ion-title>
+  </ion-toolbar>
+</ion-header>
+  <ion-content class="ion-padding">
+
+      <ion-card *ngIf="!allPage">
+      <ion-card-header> 
+        <div class="float-end">
+          <ion-chip>
+            <ion-label>{{salonDetails?.nameEn}}</ion-label>
+            <ion-avatar>
+              <img [src]="salonDetails?.logo" />
+            </ion-avatar>
+          </ion-chip>
+      </div>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="row">
+          <div class="col-6">
+           <span> Price : {{serviceDetails?.price}} SAR </span>
+          </div>
+          <div class="col-6">
+            <span>Deposit: {{serviceDetails?.deposit}} SAR </span>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-12" style="display: flex;align-items: center;">
+          <ion-badge color="warning"> <ion-icon name="time-outline"></ion-icon><span> {{serviceDetails?.durationInHours}} : {{serviceDetails?.durationInMinutes}}</span> </ion-badge>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-12">
+            <button type="button" class="btn btn-warning btn-rounded"style="width: 100%;">Add To Cart</button>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="!allPage">
+      <ion-card-header>
+        <ion-card-title>For More details</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <button type="button" class="btn btn-warning btn-rounded"style="width: 100%;" (click)="viewServiceDetailsPage()" >View More</button>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <div class="float-end">
+          <ion-chip>
+            <ion-label>{{salonDetails?.nameEn}}</ion-label>
+            <ion-avatar>
+              <img [src]="salonDetails?.logo" />
+            </ion-avatar>
+          </ion-chip>
+      </div>
+        <ion-card-title>{{serviceDetails?.nameEn}}</ion-card-title>
+      </ion-card-header> 
+      <ion-card-content>
+        <div class="row">
+          <div class="col-6">
+           <span> Price : {{serviceDetails?.price}} SAR </span>
+          </div>
+          <div class="col-6">
+            <span>Deposit: {{serviceDetails?.deposit}} SAR </span>
+          </div>
+        </div>
+      </ion-card-content> 
+    </ion-card>
+
+    <ion-card>
+      <ion-card-content>
+        <h2 class="subTitle">About</h2>
+        <p>{{serviceDetails?.descriptionEn}}</p>
+        <h6>Service Avalable time : </h6><p>from {{serviceDetails?.serviceAvailabilityStart}} to {{serviceDetails?.serviceAvailabilityEnd}}</p>
+       <p class="d-flex align-items-center"> <span>Home service :</span> <ion-icon *ngIf="serviceDetails?.isAvailableAtHome==1" style="color:green" name="checkmark-circle"></ion-icon>
+        <ion-icon *ngIf="serviceDetails?.isAvailableAtHome==0" style="color:red" name="close-circle"></ion-icon></p>
+        <h2 class="subTitle" >Stylist: </h2>
+        <ion-radio-group  (ionChange)="selectStylist($event)">
+          <ion-item *ngFor="let item of StylistList">
+            <ion-radio [value]="item.stylistId" labelPlacement="end"></ion-radio>
+            <ion-label>{{item.nameEn}}</ion-label>
+          </ion-item>
+        </ion-radio-group>
+        <ion-radio-group value="custom-checked">
+        </ion-radio-group>
+      </ion-card-content> 
+    </ion-card>
+
+    <div class="row mt-4">
+      <div class="col-12">
+        <button type="button" class="btn btn-warning btn-rounded"style="width: 100%;" (click)="setOpen(true)">Add To Cart</button>
+      </div>
+    </div>
+  </ion-content>
+  <ion-alert
+  [isOpen]="isAlertOpen"
+  header="Alert"
+  message="This Service Is Not available Right Now"
+  [buttons]="alertButtons"
+  (didDismiss)="setOpen(false)"
+></ion-alert>
