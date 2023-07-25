@@ -1,0 +1,44 @@
+ion-card-header{
+    display: block;
+}
+
+
+.col-6
+.col-12 {
+    padding: 0rem;
+}
+
+.img-card{
+    height: 200px;
+    width: 100%;
+}
+
+.subTitle{
+    color: black;
+}
+
+
+ion-radio {
+    --border-radius: 4px;
+    --inner-border-radius: 4px;
+  
+    --color: #ddd;
+    --color-checked: #702a68;
+  }
+  
+  ion-radio.ios::part(container) {
+    width: 20px;
+    height: 20px;
+  
+    border: 2px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .radio-checked.ios::part(container) {
+    border-color: #702a68;
+  }
+
+
+  ion-card.ios.hydrated {
+    background-color: white;
+  }
