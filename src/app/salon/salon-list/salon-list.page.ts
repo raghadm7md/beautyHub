@@ -14,7 +14,6 @@ export class SalonListPage implements OnInit {
 
   ngOnInit() {
     this._salonservice.fetchsalonList().subscribe(salonList=>{
-    console.log(salonList)
     this.salons=salonList
     })
   }

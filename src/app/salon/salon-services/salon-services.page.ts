@@ -61,9 +61,7 @@ export class SalonServicesPage implements OnInit {
     })
 
     this.salonservice.fetchSalonServices(Number(this.salonId)).subscribe(serviceList=>{
-      this.servicesList=serviceList
-      console.log(this.servicesList);
-      
+      this.servicesList=serviceList      
     })
   }
 }

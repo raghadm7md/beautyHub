@@ -30,12 +30,15 @@
           <div class="col-12" style="display: flex;align-items: center;">
           <ion-badge color="warning"> <ion-icon name="time-outline"></ion-icon><span> {{serviceDetails?.durationInHours}} : {{serviceDetails?.durationInMinutes}}</span> </ion-badge>
           </div>
+          <h2 class="text-dark mt-3 subTitle">About Service:</h2>
+          <p class="mt-1" >{{serviceDetails?.descriptionEn}}</p>
         </div>
-        <div class="row mt-4">
+
+        <!-- <div class="row mt-4">
           <div class="col-12">
-            <button type="button" class="btn btn-warning btn-rounded"style="width: 100%;">Add To Cart</button>
+            <button type="button" class="btn btn-warning btn-rounded"style="width: 100%;" (click)="setOpen(true)" >Add To Cart</button>
           </div>
-        </div>
+        </div> -->
       </ion-card-content>
     </ion-card>
 
@@ -49,7 +52,7 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-card>
+    <ion-card *ngIf="allPage">
       <ion-card-header>
         <div class="float-end">
           <ion-chip>
@@ -72,8 +75,9 @@
         </div>
       </ion-card-content> 
     </ion-card>
+    <form [formGroup]="stylistForm" (ngSubmit)="submitForm()" novalidate>
 
-    <ion-card>
+    <ion-card *ngIf="allPage" >
       <ion-card-content>
         <h2 class="subTitle">About</h2>
         <p>{{serviceDetails?.descriptionEn}}</p>
@@ -81,9 +85,10 @@
        <p class="d-flex align-items-center"> <span>Home service :</span> <ion-icon *ngIf="serviceDetails?.isAvailableAtHome==1" style="color:green" name="checkmark-circle"></ion-icon>
         <ion-icon *ngIf="serviceDetails?.isAvailableAtHome==0" style="color:red" name="close-circle"></ion-icon></p>
         <h2 class="subTitle" >Stylist: </h2>
-        <ion-radio-group  (ionChange)="selectStylist($event)">
+
+        <ion-radio-group  (ionChange)="selectStylist($event)" formControlName="stylistName" >
           <ion-item *ngFor="let item of StylistList">
-            <ion-radio [value]="item.stylistId" labelPlacement="end"></ion-radio>
+            <ion-radio [value]="item.stylistId" labelPlacement="end" ></ion-radio>
             <ion-label>{{item.nameEn}}</ion-label>
           </ion-item>
         </ion-radio-group>
@@ -92,16 +97,18 @@
       </ion-card-content> 
     </ion-card>
 
-    <div class="row mt-4">
+    <div class="row mt-4" *ngIf="allPage" >
       <div class="col-12">
-        <button type="button" class="btn btn-warning btn-rounded"style="width: 100%;" (click)="setOpen(true)">Add To Cart</button>
+        <button class="btn btn-warning btn-rounded"style="width: 100%;"  >Add To Cart</button>
       </div>
     </div>
+  </form>
+
   </ion-content>
   <ion-alert
   [isOpen]="isAlertOpen"
   header="Alert"
   message="This Service Is Not available Right Now"
   [buttons]="alertButtons"
-  (didDismiss)="setOpen(false)"
 ></ion-alert>
+<!-- (didDismiss)="setOpen(false)" -->
