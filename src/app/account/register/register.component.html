@@ -1,41 +1,27 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content [fullscreen]="true">
-  <!-- <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">login</ion-title>
-    </ion-toolbar>
-  </ion-header> -->
-
-
-
   <div class="account-pages my-5 pt-sm-5">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6 col-xl-5 justify-content-center d-flex">
           <ion-card class="buttom-card" *ngIf="showInputNumber">
             <ion-card-header>
-              <ion-card-title>Login</ion-card-title>
+              <ion-card-title>Register</ion-card-title>
             </ion-card-header>
             <ion-card-content>
-              <form>
+              <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
                 <div class="mb-4">
-                  <label class="col-form-label" >Enter Your Mobile Number</label>
-                  <input  type="number" class="form-control"  mask="(000) 000-0000" placeholder="+9665xxxxxxxx">
+                  <label class="col-form-label">Email</label>
+                  <input  type="email" id="email" class="form-control" placeholder="Enter Your Email" formControlName="email">
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-warning btn-rounded" (click)="onSubmitNumber()" style="width: 100%;">Next</button>
+                    <button type="submit" class="btn btn-warning btn-rounded"  style="width: 100%;">Next</button>
                   </div>
                 </div>
         
                 <div class="row mt-3">
                   <div class="col-12" >
-                    <p class="d-flex align-items-center justify-content-center">  Don't have an account?<button class="btn btn-link" [routerLink]="['/account/register']" routerLinkActive="router-link-active" >Sign Up</button></p>
+                    <p class="d-flex align-items-center justify-content-center">  Already have an account?<button class="btn btn-link" [routerLink]="['/login']" routerLinkActive="router-link-active" >Log in</button></p>
                   </div>
                  
                 </div>
@@ -56,7 +42,7 @@
                 </div>
                 <div class="row mt-4">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-warning btn-rounded" (click)="onLogin()" style="width: 100%;">Login</button>
+                    <button type="button" class="btn btn-warning btn-rounded" (click)="sibmitOTP()" style="width: 100%;">Login</button>
                   </div>
                 </div>
         
