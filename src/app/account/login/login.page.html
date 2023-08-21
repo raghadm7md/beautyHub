@@ -24,8 +24,8 @@
             <ion-card-content>
               <form>
                 <div class="mb-4">
-                  <label class="col-form-label" >Enter Your Mobile Number</label>
-                  <input  type="number" class="form-control"  mask="(000) 000-0000" placeholder="+9665xxxxxxxx">
+                  <label class="col-form-label" >Enter Your Email</label>
+                  <input  type="email" class="form-control" placeholder="someone@example.com">
                 </div>
                 <div class="row">
                   <div class="col-md-12">
@@ -54,7 +54,7 @@
                     <ng-otp-input  (onInputChange)="onOtpChange($event)"  [config]="{length:4}"></ng-otp-input>
                   </div>
                 </div>
-                <div class="row mt-4">
+                <div class="row mt-4 mb-4">
                   <div class="col-md-12">
                     <button type="button" class="btn btn-warning btn-rounded" (click)="onLogin()" style="width: 100%;">Login</button>
                   </div>

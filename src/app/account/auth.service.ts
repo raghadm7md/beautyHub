@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, of, switchMap } from "rxjs";
 import jwt_decode from "jwt-decode";
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -14,7 +15,8 @@ export class AuthService {
   private _authenticated: boolean = false;
   private _userRole: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private router : Router) { }
 
   /**
    * @param  {string} token
@@ -61,6 +63,11 @@ export class AuthService {
   logoutUser(){
     // Implement user logout logic here
     // Return a promise that resolves when logout is successful or rejects with an error message
+  }
+
+  logout(){
+    localStorage.clear()
+    this.router.navigate(['/'])
   }
 }
 

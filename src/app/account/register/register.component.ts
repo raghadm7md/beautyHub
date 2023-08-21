@@ -50,24 +50,21 @@ export class RegisterComponent  implements OnInit {
         const result = await lastValueFrom(
           this.authservice.sendRegisterOTP({email : this.registerForm.value.email})
         );
-        console.log(result);
         this.showInputNumber = false
         // this.router.navigate([], { queryParams: { corp_Success: true } });
         // this.modalService.open(this.content, { centered: true });
         this.loading = false;
-      } catch (err) {
-        console.log(err);
-        
-        // this.error = true;
-        // this.loading = false;
-        // if (err.error.error.includes("username")) {
+      } catch (err) {        
+        this.error = true;
+        this.loading = false;
+        // if (err.includes("username")) {
         //   this.errorMsg = "Phone Number Is Already Exist";
-        // } else if (err.error.error.includes("email")) {
+        // } else if (err.includes("email")) {
         //   this.errorMsg = "Email Is Already Exist";
-        // } else if (err.error.error.includes("corporate")) {
+        // } else if (err.includes("corporate")) {
         //   this.errorMsg = "Corporate Already Exist ";
         // } else {
-        //   this.errorMsg = "Something Went Wrong Try Again Later";
+          this.errorMsg = "Something Went Wrong Try Again Later";
         // }
       }
     }
@@ -75,12 +72,12 @@ export class RegisterComponent  implements OnInit {
 
   sibmitOTP(){
     this.authservice.registerUser({email : this.registerForm.value.email},this.otp).subscribe(registerInfo => {
-
     },(error)=>{
       console.log(error);
     });
     
   }
+
   // onClose() {
   //   this.router.navigate(["account/login"]);
   //   this.modalService.dismissAll();
