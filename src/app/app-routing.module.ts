@@ -27,6 +27,10 @@ const routes: Routes = [
     loadChildren: () => import('./salon/booking/booking.module').then( m => m.BookingPageModule)
   },
   {
+    path: 'account',
+    loadChildren: () => import('./account/account.module').then( m => m.AccountModule)
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
