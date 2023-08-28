@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { lastValueFrom } from "rxjs";
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -13,38 +16,66 @@ export class LoginPage implements OnInit {
   error: boolean;
   loading: boolean;
   errorMsg: string;
+  loginForm: FormGroup;
+
   constructor(private router: Router, 
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
+    this.loginForm = new FormGroup({
+      email: new FormControl(null, [Validators.required, Validators.email]),
+    });
   }
   
-  onSubmitNumber(){
-    this.showInputNumber = false
+  async onSubmitNumber(){
+    const loading = await this.loadingCtrl.create({
+      message: `Sending the OTP to ${this.loginForm.value.email}`,
+      duration: 3000,
+    });
+    loading.present();
+    this.loading = true;
+    if (this.loginForm.invalid) {
+      this.loading = false;   
+      loading.dismiss()      
+      return;
+    } else {      
+      try {                
+        await lastValueFrom(
+          this.authService.sendLoginOTP({emailAddress : this.loginForm.value.email})
+        );
+        this.showInputNumber = false
+        loading.dismiss()
+        this.loading = false;
+      } catch (err) {        
+        this.error = true;
+        this.errorMsg = "Something Went Wrong Try Again Later";
+      }
+    }
   }
 
   onOtpChange(code: string) {
+    this.otp=Number(code)
   }
 
-
-  onLogin() {
-    this.router.navigate(['/salons'])
-    const credentials = { email: 'user@example.com', password: 'password' };
-    this.authService.loginUser(credentials ,this.otp ).subscribe(arg => {},()=>{});
+  async onLogin() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Authenticating..',
+      duration: 3000,
+    });
+    loading.present();
 
     this.authService
-    .loginUser(credentials ,this.otp )
+    .loginUser({emailAddress : this.loginForm.value.email} , this.otp)
     .subscribe(
       (val) => {
         if (val.loggedIn) {
-          
           this.router.navigate(['/salons'])
-
+          loading.dismiss()
         }
       },
       (error) => {
         this.error = true;
-        this.loading = false;
         if (error.error.error.includes("given credentials")) {
           this.errorMsg = "invalid username or password";
         } else if (error.error.error.includes("No active")) {
@@ -54,9 +85,6 @@ export class LoginPage implements OnInit {
           this.errorMsg = "Something Went Wrong Try Again Later";
         }
         this.error = true;
-        setTimeout(() => {
-          this.error = false;
-        }, 5000);
       }
     );
     

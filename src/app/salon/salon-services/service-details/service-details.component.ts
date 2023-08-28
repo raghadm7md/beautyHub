@@ -37,8 +37,6 @@ export class ServiceDetailsComponent implements OnInit {
       }
     })
     this._fetchServiceDetails()
-    
-
     this.stylistForm = new FormGroup({
       stylistName: new FormControl(null, Validators.required),
     });
@@ -57,12 +55,11 @@ export class ServiceDetailsComponent implements OnInit {
   //     this.router.navigate(['/booking'])
   //   } else {
   //     this.isAlertOpen = isOpen;
-
   //   }
   // }
 
   selectStylist(event) {
-    console.log('event', event.detail.value);
+    //TODO: get stylist id to send with booking request
   }
 
   private _fetchServiceDetails() {
@@ -73,7 +70,7 @@ export class ServiceDetailsComponent implements OnInit {
     this.salonservice.fetchSalonDetails(Number(this.salonId)).subscribe(salonDetails => {
       this.salonDetails = salonDetails
     }, (error) => {
-
+      //TODO : handle error 
     })
 
     this.salonservice.fetchServiceStylist(Number(this.serviceId)).subscribe(StylistList => {
@@ -84,7 +81,6 @@ export class ServiceDetailsComponent implements OnInit {
 
   submitForm() {
     this.bookingservise.updateData(this.serviceDetails);
-    console.log(this.stylistForm.value);
     this.router.navigate([`/booking/${this.serviceId}`])
   }
 
