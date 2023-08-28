@@ -17,7 +17,7 @@
   </ion-header>
 
   <!-- <img class="img-card" [src]="salonDetails?.logo"> -->
-  <ion-card>
+  <div class="card">
     <ion-card-header>
       <ion-card-title></ion-card-title>
       <ion-card-subtitle>{{salonDetails?.nameEn}}</ion-card-subtitle>
@@ -33,28 +33,36 @@
       </div>
      </div>
     </ion-card-content>
-  </ion-card>
+  </div>
 
   <h3>Salon Service:</h3>
-
-    <ion-list  *ngFor="let service of servicesList; let i = index" lines="none">
-      <ion-item>
-        <div class="card" style="width: 100%;" (click)="presentModal(service.serviceId)">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-4">
-                <img class="card-img-top img-fluid" src='./assets/images/Beauty-Salon.jpeg' height="auto">
-              </div>
-              <div class="col-8">
-                <h4 style="margin-bottom: 0px;">{{service?.nameEn}}</h4>
-                <span>price: {{service?.price}} SAR</span>
-                <!-- <button class="btn btn-warning" expand="full"  (click)="presentModal(i)" >Open Sheet Modal</button> -->
+  <div class="wrapper">
+    <ion-grid class="square">
+      <ion-row class="ion-justify-content-start">
+        <ion-col size="auto" style="height: 87px;" *ngFor="let service of servicesList; let i = index">
+          <div class="card" style="max-width: 350px;" (click)="presentModal(service.serviceId)">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-4">
+                  <img class="card-img-top img-fluid" src='./assets/images/Beauty-Salon.jpeg' height="auto">
+                </div>
+                <div class="col-8">
+                  <h4 style="margin-bottom: 0px;">{{service?.nameEn}}</h4>
+                  <span>price: {{service?.price}} SAR</span>
+                  <!-- <button class="btn btn-warning" expand="full"  (click)="presentModal(i)" >Open Sheet Modal</button> -->
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+    <!-- <ion-list   lines="none">
+      <ion-item>
+       
       </ion-item>
-    </ion-list>
+    </ion-list> -->
 
 
 </ion-content>

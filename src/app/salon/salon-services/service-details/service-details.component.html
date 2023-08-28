@@ -6,7 +6,7 @@
 </ion-header>
   <ion-content class="ion-padding">
 
-      <ion-card *ngIf="!allPage">
+  <div class="card"*ngIf="!allPage">
       <ion-card-header> 
         <div class="float-end">
           <ion-chip>
@@ -40,9 +40,9 @@
           </div>
         </div> -->
       </ion-card-content>
-    </ion-card>
+  </div>
 
-    <ion-card *ngIf="!allPage">
+    <div class="card" *ngIf="!allPage">
       <ion-card-header>
         <ion-card-title>For More details</ion-card-title>
       </ion-card-header>
@@ -50,7 +50,7 @@
       <ion-card-content>
         <button type="button" class="btn btn-warning btn-rounded"style="width: 100%;" (click)="viewServiceDetailsPage()" >View More</button>
       </ion-card-content>
-    </ion-card>
+    </div>
 
     <ion-card *ngIf="allPage">
       <ion-card-header>
@@ -99,7 +99,7 @@
 
     <div class="row mt-4" *ngIf="allPage" >
       <div class="col-12">
-        <button class="btn btn-warning btn-rounded"style="width: 100%;"  >Add To Cart</button>
+        <button class="btn btn-warning btn-rounded"style="width: 100%;">Display times dates</button>
       </div>
     </div>
   </form>
