@@ -11,12 +11,11 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  private _baseURL = environment.baseURL+`Auth/`;
+  private _baseURL = environment.baseURL + `Auth/`;
   private _authenticated: boolean = false;
-  private _userRole: any;
 
   constructor(private http: HttpClient,
-    private router : Router) { }
+    private router: Router) { }
 
   /**
    * @param  {string} token
@@ -31,22 +30,22 @@ export class AuthService {
     return localStorage.getItem("accessToken") ?? "";
   }
 
-  sendRegisterOTP(credentials: { email: string}): Observable<any>{
+  sendRegisterOTP(credentials: { emailAddress: string }): Observable<any> {
     return this.http.post(`${this._baseURL}SendOtpRegister`, credentials)
   }
 
-  registerUser(credentials: { email: string} , OTP : number): Observable<any>{
+  registerUser(credentials: { emailAddress: string }, OTP: number): Observable<any> {
     return this.http.post(`${this._baseURL}Register?otp=${OTP}`, credentials)
   }
 
-  sendLoginOTP(credentials: { email: string}): Observable<any>{
+  sendLoginOTP(credentials: { emailAddress: string }): Observable<any> {
     return this.http.post(`${this._baseURL}SendOtpLogin`, credentials)
   }
 
-  loginUser(credentials: { email: string} , OTP:number): Observable<any> {
+  loginUser(credentials: { emailAddress: string }, OTP: number): Observable<any> {
     return this.http.post(`${this._baseURL}Login?otp=${OTP}`, credentials).pipe(
       switchMap((response) => {        
-        this.accessToken = response['access'];
+        this.accessToken = response['message'].jwtToken;        
         this._authenticated = true;
         return of({
           loggedIn: true,
@@ -55,23 +54,15 @@ export class AuthService {
     );
   }
 
-  logingOTP(){
-
-  }
-
-
-  logoutUser(){
-    // Implement user logout logic here
-    // Return a promise that resolves when logout is successful or rejects with an error message
-  }
-
-  logout(){
+  logout() {
     localStorage.clear()
     this.router.navigate(['/'])
   }
 }
 
 interface IToken {
-  refresh: string;
-  access: string;
+  name: string,
+  ownerStrategyName: string,
+  createdAt: string,
+  value: string
 }

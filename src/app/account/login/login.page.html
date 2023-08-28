@@ -22,10 +22,10 @@
               <ion-card-title>Login</ion-card-title>
             </ion-card-header>
             <ion-card-content>
-              <form>
+              <form [formGroup]="loginForm" (ngSubmit)="onSubmitNumber()">
                 <div class="mb-4">
                   <label class="col-form-label" >Enter Your Email</label>
-                  <input  type="email" class="form-control" placeholder="someone@example.com">
+                  <input id="email" type="email" class="form-control" placeholder="someone@example.com" formControlName="email">
                 </div>
                 <div class="row">
                   <div class="col-md-12">
@@ -51,7 +51,7 @@
               <form>
                 <div class="row mt-4">
                   <div class="col-md-12 text-center">
-                    <ng-otp-input  (onInputChange)="onOtpChange($event)"  [config]="{length:4}"></ng-otp-input>
+                    <ng-otp-input  (onInputChange)="onOtpChange($event)"  [config]="{length:6}"></ng-otp-input>
                   </div>
                 </div>
                 <div class="row mt-4 mb-4">

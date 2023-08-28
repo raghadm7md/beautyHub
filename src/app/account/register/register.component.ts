@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 import { lastValueFrom } from "rxjs";
 import { AuthService } from '../auth.service';
 
@@ -21,7 +23,9 @@ export class RegisterComponent  implements OnInit {
   loading: boolean;
 
 
-  constructor(private authservice : AuthService) { }
+  constructor(private authservice : AuthService, 
+    private loadingCtrl: LoadingController,
+    private router : Router) { }
 
   ngOnInit(){
     this.registerForm = new FormGroup({
@@ -38,48 +42,44 @@ export class RegisterComponent  implements OnInit {
   }
 
   async onSubmit() {
-    this.loading = true;
+    const loading = await this.loadingCtrl.create({
+      message: `Sending the OTP to ${this.registerForm.value.email}`,
+      duration: 3000,
+    });
+    loading.present();
     this.submitted = true;
-    // let registrData = this._setFormValue(this.signupForm);
-    // stop here if form is invalid
     if (this.registerForm.invalid) {
-      this.loading = false;      
+      this.loading = false;   
+      loading.dismiss()   
       return;
     } else {
       try {        
-        const result = await lastValueFrom(
-          this.authservice.sendRegisterOTP({email : this.registerForm.value.email})
+        await lastValueFrom(
+          this.authservice.sendRegisterOTP({emailAddress : this.registerForm.value.email})
         );
         this.showInputNumber = false
-        // this.router.navigate([], { queryParams: { corp_Success: true } });
-        // this.modalService.open(this.content, { centered: true });
+        loading.dismiss()
         this.loading = false;
       } catch (err) {        
         this.error = true;
-        this.loading = false;
-        // if (err.includes("username")) {
-        //   this.errorMsg = "Phone Number Is Already Exist";
-        // } else if (err.includes("email")) {
-        //   this.errorMsg = "Email Is Already Exist";
-        // } else if (err.includes("corporate")) {
-        //   this.errorMsg = "Corporate Already Exist ";
-        // } else {
-          this.errorMsg = "Something Went Wrong Try Again Later";
-        // }
+        this.errorMsg = "Something Went Wrong Try Again Later";
       }
     }
   }
 
-  sibmitOTP(){
-    this.authservice.registerUser({email : this.registerForm.value.email},this.otp).subscribe(registerInfo => {
+  async sibmitOTP(){
+    const loading = await this.loadingCtrl.create({
+      message: 'Authenticating..',
+      duration: 3000,
+    });
+    loading.present();
+    this.authservice.registerUser({emailAddress : this.registerForm.value.email}, this.otp).subscribe(registerInfo => {
+    this.router.navigate(["/login"]);
+    loading.dismiss()
     },(error)=>{
       console.log(error);
     });
     
   }
 
-  // onClose() {
-  //   this.router.navigate(["account/login"]);
-  //   this.modalService.dismissAll();
-  // }
 }
