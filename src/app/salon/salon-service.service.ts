@@ -11,26 +11,30 @@ export class SalonServiceService {
 
   private _baseURL = environment.baseURL;
 
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient) { }
 
-  fetchsalonList():Observable<ISalon[]>{
+  fetchsalonList(): Observable<ISalon[]> {
     return this._http.get<ISalon[]>(`${this._baseURL}Saloon?pageNumber=1&pageSize=1000`)
   }
 
-  fetchSalonDetails(salonId:number):Observable<ISalon>{
+  fetchSalonDetails(salonId: number): Observable<ISalon> {
     return this._http.get<ISalon>(`${this._baseURL}Saloon/${salonId}`)
   }
 
-  fetchSalonServices(salonId:number):Observable<IService[]>{
+  fetchSalonServices(salonId: number): Observable<IService[]> {
     return this._http.get<IService[]>(`${this._baseURL}Service/Saloon/${salonId}`)
   }
 
-  fetchServiceDetails(serviceId:number):Observable<IService>{
-    return this._http.get<IService>(`${this._baseURL}Service/${serviceId}`) 
+  fetchServiceDetails(serviceId: number): Observable<IService> {
+    return this._http.get<IService>(`${this._baseURL}Service/${serviceId}`)
   }
 
-  fetchServiceStylist(serviceId:number):Observable<IStylist[]>{
+  fetchServiceStylist(serviceId: number): Observable<IStylist[]> {
     return this._http.get<IStylist[]>(`${this._baseURL}Stylist/Service/${serviceId}`)
+  }
+
+  checkServiceAvailability(serviceId: number) {
+    return this._http.post(`${this._baseURL}Booking/CheckServiceAvailability`, { serviceId: 1001 })
   }
 }
 

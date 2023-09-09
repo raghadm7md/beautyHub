@@ -6,6 +6,7 @@ import jwt_decode from "jwt-decode";
 import { Router } from '@angular/router';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -44,11 +45,18 @@ export class AuthService {
 
   loginUser(credentials: { emailAddress: string }, OTP: number): Observable<any> {
     return this.http.post(`${this._baseURL}Login?otp=${OTP}`, credentials).pipe(
-      switchMap((response) => {        
-        this.accessToken = response['message'].jwtToken;        
+      switchMap((response) => {
+        this.accessToken = response['message'].jwtToken;
+        // const decoded: JWTDeCode = jwt_decode(this.accessToken)
+        // console.log(decoded);
+        // console.log(decoded.id);
+        // this.userID = decoded.id
+        // console.log(this.userID);
+        
         this._authenticated = true;
         return of({
           loggedIn: true,
+
         });
       })
     );
@@ -58,6 +66,12 @@ export class AuthService {
     localStorage.clear()
     this.router.navigate(['/'])
   }
+
+  getUserID(){
+    // if (this.isTokenValid()){
+     return of(jwt_decode(this.accessToken))
+    // }
+  }
 }
 
 interface IToken {
@@ -65,4 +79,14 @@ interface IToken {
   ownerStrategyName: string,
   createdAt: string,
   value: string
+}
+
+export interface JWTDeCode {
+  email: string,
+  name: string,
+  id: string,
+  role: string,
+  exp: number,
+  iss: string,
+  aud: string
 }

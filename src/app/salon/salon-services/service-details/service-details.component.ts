@@ -36,6 +36,7 @@ export class ServiceDetailsComponent implements OnInit {
         this.salonId = params['id']
       }
     })
+    this.salonservice.checkServiceAvailability(this.serviceId).subscribe( isAvailable =>  console.log(isAvailable))
     this._fetchServiceDetails()
     this.stylistForm = new FormGroup({
       stylistName: new FormControl(null, Validators.required),
@@ -80,7 +81,9 @@ export class ServiceDetailsComponent implements OnInit {
   }
 
   submitForm() {
-    this.bookingservise.updateData(this.serviceDetails);
+    //myObject.newKey = 'New Value';
+    this.serviceDetails['stylist']= this.stylistForm.get('stylistName')?.value
+    this.bookingservise.updateData(this.serviceDetails );
     this.router.navigate([`/booking/${this.serviceId}`])
   }
 

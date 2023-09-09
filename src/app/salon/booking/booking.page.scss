@@ -1,5 +1,5 @@
 .square {
-    width: 80%;
+    width: 90%;
     margin: 1%;
 }
 
@@ -10,3 +10,19 @@
     align-items: center;
     justify-items: center;
   }
+
+  .career_badge {
+      background-color: var(--ion-color-rose) !important ;
+    & {
+        white-space: nowrap !important;
+    }
+
+    .circle {
+        width: 12px;
+        height: 12px;
+    }
+
+    &.active {
+        background-color: var(--ion-color-step-650) !important;
+    }
+}
