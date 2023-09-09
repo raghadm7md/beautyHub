@@ -31,7 +31,6 @@ export class LoginPage implements OnInit {
   async onSubmitNumber(){
     const loading = await this.loadingCtrl.create({
       message: `Sending the OTP to ${this.loginForm.value.email}`,
-      duration: 3000,
     });
     loading.present();
     this.loading = true;
@@ -46,7 +45,6 @@ export class LoginPage implements OnInit {
         );
         this.showInputNumber = false
         loading.dismiss()
-        this.loading = false;
       } catch (err) {        
         this.error = true;
         this.errorMsg = "Something Went Wrong Try Again Later";

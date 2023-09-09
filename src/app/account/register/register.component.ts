@@ -43,8 +43,7 @@ export class RegisterComponent  implements OnInit {
 
   async onSubmit() {
     const loading = await this.loadingCtrl.create({
-      message: `Sending the OTP to ${this.registerForm.value.email}`,
-      duration: 3000,
+      message: `Sending the OTP to ${this.registerForm.value.email}`
     });
     loading.present();
     this.submitted = true;
@@ -69,8 +68,7 @@ export class RegisterComponent  implements OnInit {
 
   async sibmitOTP(){
     const loading = await this.loadingCtrl.create({
-      message: 'Authenticating..',
-      duration: 3000,
+      message: 'Authenticating..'
     });
     loading.present();
     this.authservice.registerUser({emailAddress : this.registerForm.value.email}, this.otp).subscribe(registerInfo => {

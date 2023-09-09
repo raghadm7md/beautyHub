@@ -21,37 +21,29 @@
       <ion-button color="primary" (click)="datetime.confirm()">Save</ion-button>
     </ion-buttons>
   </ion-datetime>
-  <div class="row mt-4">
+
+  
+
+
+  <div class="row mt-4" *ngIf="showAvailableTimes">
     <h3 size="large">Available Times</h3>
     <div class="wrapper">
       <ion-grid class="square">
         <ion-row>
-          <ion-col size="auto">
-            <ion-badge>1 : 30 </ion-badge>
-          </ion-col>
-          <ion-col size="auto">
-            <ion-badge>2 : 00</ion-badge>
-          </ion-col>
-          <ion-col size="auto">
-            <ion-badge>2 : 30</ion-badge>
-          </ion-col>
-          <ion-col size="auto">
-            <ion-badge>3 : 00</ion-badge>
-          </ion-col>
-          <ion-col size="auto">
-            <ion-badge>3 : 30</ion-badge>
-          </ion-col>
-          <ion-col size="auto">
-            <ion-badge>4 : 00</ion-badge>
+          <ion-col size="auto" *ngFor="let item of availableTimeList">
+            <span class="badge w-auto mb-0 pointer rounded-pill career_badge"
+              [ngClass]="{'active': item === selectedTime}" (click)="onSelectTime(item)">{{item}}</span>
+            <!-- <button class="btn btn-outline-light" >{{item}}</button> -->
           </ion-col>
         </ion-row>
       </ion-grid>
     </div>
   </div>
 
-  <ion-row class="ion-justify-content-center">
+  <ion-row class="ion-justify-content-center mt-3" *ngIf="showAvailableTimes">
     <ion-col size="5">
-      <button type="button" class="btn btn-warning btn-rounded"style="width: 100%;" [routerLink]="['/booking/{{seviceID}}/cart']" routerLinkActive="router-link-active"  >Add To Cart</button>
+      <!-- [routerLink]="['/booking/{{seviceID}}/cart']" routerLinkActive="router-link-active"  -->
+      <button type="button" class="btn btn-warning btn-rounded"style="width: 100%;" (click)=onBookingService() >Add To Cart</button>
     </ion-col>
   </ion-row>
 </ion-content>
