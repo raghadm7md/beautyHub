@@ -11,33 +11,39 @@
     </ion-toolbar>
   </ion-header> -->
 
+  <div class="row" style="margin-top: 35%;">
+    <div class="col-12 d-flex justify-content-center align-items-center">
+      <h1 class="auth-title-page">
+        Loing
+      </h1>
+    </div>
+  </div>
 
 
-  <div class="account-pages my-5 pt-sm-5">
-    <div class="container">
+  <!-- <div class="account-pages my-5 pt-sm-5"> -->
+    <!-- <div class="container">
       <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6 col-xl-5 justify-content-center d-flex">
+        <div class="col-md-8 col-lg-6 col-xl-5 justify-content-center d-flex"> -->
           <ion-card class="buttom-card" *ngIf="showInputNumber">
-            <ion-card-header>
+            <!-- <ion-card-header>
               <ion-card-title>Login</ion-card-title>
-            </ion-card-header>
+            </ion-card-header> -->
             <ion-card-content>
               <form [formGroup]="loginForm" (ngSubmit)="onSubmitNumber()">
-                <div class="mb-4">
-                  <label class="col-form-label" >Enter Your Email</label>
+                <div class="mb-5 mt-3">
+                  <label class="col-form-label fs-3 auth-form-lable mb-3 light-text" >Enter Your Email</label>
                   <input id="email" type="email" class="form-control" placeholder="someone@example.com" formControlName="email">
                 </div>
-                <div class="row">
+                <div class="row mt-5">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-warning btn-rounded" (click)="onSubmitNumber()" style="width: 100%;">Next</button>
+                    <button type="button" class="btn btn-white btn-rounded" (click)="onSubmitNumber()" style="width: 100%;">Next</button>
                   </div>
                 </div>
         
-                <div class="row mt-3">
+                <div class="row mt-3" style="margin-top: 50% !important">
                   <div class="col-12" >
-                    <p class="d-flex align-items-center justify-content-center">  Don't have an account?<button class="btn btn-link" [routerLink]="['/account/register']" routerLinkActive="router-link-active" >Sign Up</button></p>
+                    <p class="d-flex align-items-center justify-content-center light-text fs-3">  Don't have an account?<button class="btn btn-link light-text fs-6" [routerLink]="['/account/register']" routerLinkActive="router-link-active">Sign Up</button></p>
                   </div>
-                 
                 </div>
               </form>
             </ion-card-content>
@@ -45,7 +51,7 @@
         
           <ion-card class="buttom-card" *ngIf="!showInputNumber">
             <ion-card-header>
-              <ion-card-title>Enter Code</ion-card-title>
+              <ion-card-title class="light-text">Enter Code</ion-card-title>
             </ion-card-header>
             <ion-card-content>
               <form>
@@ -54,9 +60,9 @@
                     <ng-otp-input  (onInputChange)="onOtpChange($event)"  [config]="{length:6}"></ng-otp-input>
                   </div>
                 </div>
-                <div class="row mt-4 mb-4">
+                <div class="row mt-5 mb-4">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-warning btn-rounded" (click)="onLogin()" style="width: 100%;">Login</button>
+                    <button type="button" class="btn btn-white btn-rounded" (click)="onLogin()" style="width: 100%;">Login</button>
                   </div>
                 </div>
         
@@ -64,12 +70,12 @@
             </ion-card-content>
           </ion-card>
   
-        </div>
+        <!-- </div>
       </div>
-    </div>
+    </div> -->
   
     <!-- end container -->
-  </div>
+  <!-- </div> -->
   <!-- end page -->
   
 </ion-content>

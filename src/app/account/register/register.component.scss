@@ -1,14 +1,9 @@
-ion-content{
-    --ion-background-color:#702a68;
+.auth-title-page{
+    // color: rgb(255, 252, 240);
+    font-size: 48px;
+    font-weight: 700;
 }
 
-.buttom-card{
-    // position: absolute;
-    width: 100%;
-    height: fit-content;
-    // left: 0px;
-    // top: 324px;
-    // border-radius: 25px 25px 0px 0px;
-    // margin: 0px;
-    background-color: rgb(255, 252, 240);
+.auth-form-lable{
+    font-weight: 600;
 }
