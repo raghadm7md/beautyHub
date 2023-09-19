@@ -141,11 +141,31 @@
 .btn-primary{
     --bs-btn-color: #FDFBF5;
     --bs-btn-bg: #220C5A;
+    --bs-btn-border-color: #220C5A;
 }
 
 .btn-secondary{
     --bs-btn-color: #FDFBF5;
     --bs-btn-bg: #6C52A3;
+    --bs-btn-border-color: #6C52A3;
+}
+
+.btn:hover {
+    color: #FDFBF5;
+    --bs-btn-hover-bg: #8480F2;
+    --bs-btn-hover-border-color: #8480F2;
+}
+
+.btn:focus {
+    color: #FDFBF5;
+    background-color: #8480F2;
+    border-color: #8480F2;
+}
+
+.btn:active {
+    --bs-btn-active-color: #FDFBF5;
+    --bs-btn-active-bg: #8480F2;
+    --bs-btn-active-border-color: #8480F2;
 }
 
 button.btn.btn-white.btn-rounded {
@@ -182,3 +202,46 @@ button.btn.btn-white.btn-rounded {
 .secondary-text{
     color:#6C52A3
 }
+
+.card-secondary{
+    background-color: #6C52A3;
+}
+
+.card-light{
+    background-color: #8480f252;
+}
+
+
+.badge-soft-success {
+    color: #198754;
+    background-color: rgba(25, 135, 84, 0.18);
+    border: #198754 solid;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+
+.badge-soft-danger{
+    color: #f46a6a;
+    background-color: #f46a6a2e;
+    border: #f46a6a solid;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.badge-light{
+    color: #8480f2;
+    background-color: #8480f252;
+    border: #8480f2 solid;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.badge-dark{
+    color: #220C5A;
+    background-color: #220c5a4b;
+    border: #220C5A solid;
+    border-radius: 5px;
+    padding: 3px;
+}
+

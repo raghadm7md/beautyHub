@@ -47,12 +47,6 @@ export class AuthService {
     return this.http.post(`${this._baseURL}Login?otp=${OTP}`, credentials).pipe(
       switchMap((response) => {
         this.accessToken = response['message'].jwtToken;
-        // const decoded: JWTDeCode = jwt_decode(this.accessToken)
-        // console.log(decoded);
-        // console.log(decoded.id);
-        // this.userID = decoded.id
-        // console.log(this.userID);
-        
         this._authenticated = true;
         return of({
           loggedIn: true,

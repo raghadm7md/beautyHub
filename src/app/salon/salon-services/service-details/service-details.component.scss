@@ -42,3 +42,9 @@ ion-radio {
   ion-card.ios.hydrated {
     background-color: white;
   }
+
+
+  .badge {
+    --bs-badge-font-size: 1rem;
+    border-radius: 16px;
+  }

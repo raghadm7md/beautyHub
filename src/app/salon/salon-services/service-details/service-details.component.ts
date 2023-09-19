@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { BookingService } from '../../booking/booking.service';
+import { BookingService } from 'src/app/booking/booking.service';
 import { SalonServiceService } from '../../salon-service.service';
 import { ISalon, IService, IStylist } from '../../salon.model';
 

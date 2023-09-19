@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Booking History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Booking History</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="wrapper">
+    <ion-grid class="square">
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="auto"  *ngFor="let booking of bookingHistoryList" lines="none">
+            <div class="card card-light dark-text">
+              <div class="card-header bg-transparent border-bottom fw-bold">
+                <div class="float-end">
+                  <span class=" badge badge-soft-success">{{booking?.bookingStatus}}</span>
+                </div>
+               ref: {{booking.bookingId}}
+              </div>
+              <div class="card-body">
+                <h4 class="card-title mt-0 fw-bold">{{booking?.salonName}}</h4>
+                <h4 class="card-title mt-0"> Service : {{booking?.BookingService[0]?.serviceName}}</h4>
+                <div class="row" >
+                  <div class="col-7">
+                    <p>Date: {{booking?.bookingDate | date:'MMM d, y'}}</p>
+                  </div>
+                  <div class="col-5">
+                    <p>Time:</p>
+                  </div>
+                </div>
+                <hr>
+                <div class="row" >
+                  <div class="col-12 col-6">
+                    <p>Name: {{booking?.userInfo?.fullName}}</p>
+                  </div>
+                  <div class="col-12 col-6">
+                    <p>Email : {{booking?.userInfo?.email}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
