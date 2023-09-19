@@ -11,7 +11,7 @@ export class BookingService {
 
   private dataSource = new BehaviorSubject<any>({});
   public data = this.dataSource.asObservable();
-  private _baseURL = environment.baseURL;
+  private _baseURL = environment.baseURL+`Booking`;
 
   constructor(private _http: HttpClient) { }
 
@@ -20,11 +20,15 @@ export class BookingService {
   }
 
   createBooking(bookingData):Observable<{}>{
-    return this._http.post<{}>(`${this._baseURL}Booking`,bookingData)
+    return this._http.post<{}>(`${this._baseURL}`,bookingData)
   }
 
   fetchAvailableHours(serviceId : number , selectedDate : string):Observable<[]>{
-    return this._http.post<[]>(`${this._baseURL}Booking/AvailableBookingHours?Date=${selectedDate}&ServiceID=${serviceId}`, {})
+    return this._http.post<[]>(`${this._baseURL}/AvailableBookingHours?Date=${selectedDate}&ServiceID=${serviceId}`, {})
+  }
+
+  fetchBookingHistory(userID:string){
+    return this._http.post(`${this._baseURL}/HistoryBooking?UserID=${userID}`,{})
   }
   
 }

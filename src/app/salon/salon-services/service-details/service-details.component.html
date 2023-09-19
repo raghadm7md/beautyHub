@@ -6,7 +6,7 @@
 </ion-header>
   <ion-content class="ion-padding">
 
-  <div class="card"*ngIf="!allPage">
+  <div class="card card-light dark-text fw-bold"*ngIf="!allPage">
       <ion-card-header> 
         <div class="float-end">
           <ion-chip>
@@ -16,6 +16,7 @@
             </ion-avatar>
           </ion-chip>
       </div>
+      <h3 class="fw-bold px-2 mb-0 mt-2">{{serviceDetails?.nameEn}}</h3>
       </ion-card-header>
       <ion-card-content>
         <div class="row">
@@ -27,11 +28,12 @@
           </div>
         </div>
         <div class="row mt-2">
+         
+          <!-- <h2 class="text-dark mt-3 subTitle">About Service:</h2>
+          <p class="mt-1" >{{serviceDetails?.descriptionEn}}</p> -->
           <div class="col-12" style="display: flex;align-items: center;">
-          <ion-badge color="warning"> <ion-icon name="time-outline"></ion-icon><span> {{serviceDetails?.durationInHours}} : {{serviceDetails?.durationInMinutes}}</span> </ion-badge>
-          </div>
-          <h2 class="text-dark mt-3 subTitle">About Service:</h2>
-          <p class="mt-1" >{{serviceDetails?.descriptionEn}}</p>
+            <ion-badge class="badge badge-dark"> <ion-icon name="time-outline"></ion-icon><span> {{serviceDetails?.durationInHours}} : {{serviceDetails?.durationInMinutes}}</span> </ion-badge>
+            </div>
         </div>
 
         <!-- <div class="row mt-4">
@@ -42,13 +44,13 @@
       </ion-card-content>
   </div>
 
-    <div class="card" *ngIf="!allPage">
+    <div class="card card-light dark-text" *ngIf="!allPage">
       <ion-card-header>
         <ion-card-title>For More details</ion-card-title>
       </ion-card-header>
     
       <ion-card-content>
-        <button type="button" class="btn btn-warning btn-rounded"style="width: 100%;" (click)="viewServiceDetailsPage()" >View More</button>
+        <button type="button" class="btn btn-white btn-rounded"style="width: 100%;" (click)="viewServiceDetailsPage()" >View More</button>
       </ion-card-content>
     </div>
 

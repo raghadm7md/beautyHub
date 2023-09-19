@@ -30,11 +30,9 @@ export class BookingPage implements OnInit {
   constructor(private activeroute: ActivatedRoute,
     private loadingCtrl: LoadingController,
     private bookingservise: BookingService,
-    private authservice : AuthService) {
+    private authservice: AuthService) {
     this.bookingservise.data.subscribe(data => {
       this.data = data;
-      console.log(data);
-      
     });
   }
 
@@ -45,35 +43,34 @@ export class BookingPage implements OnInit {
       notes: new FormControl(null, Validators.required),
     })
     this.seviceID = Number(this.activeroute.snapshot.paramMap.get('seviceID'))
-    this.authservice.getUserID().subscribe(user => this.userId= user);
-    
-    
+    this.authservice.getUserID().subscribe(user => this.userId = user);
 
-    
+
+
+
   }
 
   onSelectTime(time) {
     this.selectedTime = time
     // Time in 24-hour format
-var time24 = time;
+    var time24 = time;
 
-// Split the time into hour and minute components
-var timeComponents = time24.split(':');
-var hour24 = parseInt(timeComponents[0]);
-var minute = timeComponents[1];
+    // Split the time into hour and minute components
+    var timeComponents = time24.split(':');
+    var hour24 = parseInt(timeComponents[0]);
+    var minute = timeComponents[1];
 
-// Convert the hour to 12-hour format
-var hour12 = (hour24 % 12) || 12;
+    // Convert the hour to 12-hour format
+    var hour12 = (hour24 % 12) || 12;
 
-// Determine if it is AM or PM
-var period = (hour24 < 12) ? 'AM' : 'PM';
+    // Determine if it is AM or PM
+    var period = (hour24 < 12) ? 'AM' : 'PM';
 
-// Build the converted time string
-var time12 = hour12 + ':' + minute + ' ' + period;
+    // Build the converted time string
+    var time12 = hour12 + ':' + minute + ' ' + period;
 
-// Print the converted time
-console.log(time12);
-this.formatedTime = time12
+    // Print the converted time
+    this.formatedTime = time12
 
   }
 
@@ -100,13 +97,15 @@ this.formatedTime = time12
       bookingServiceDTO: [
         {
           serviceId: this.data.serviceId,
-          startTime: this.selectedDate+" "+this.formatedTime,
+          startTime: this.selectedDate + " " + this.formatedTime,
           stylistId: this.data.stylist
         }
       ]
     }
-    this.bookingservise.createBooking(bookingData).subscribe(bookingData => console.log(bookingData));
-    
+    this.bookingservise.createBooking(bookingData).subscribe(bookingData => {}
+      // display successful msg then redirection to booking history ,
+    );
+
 
   }
 

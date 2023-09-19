@@ -23,8 +23,8 @@ const routes: Routes = [
     loadChildren: () => import('./salon/salon-services/salon-services.module').then( m => m.SalonServicesPageModule)
   },
   {
-    path: 'booking/:seviceID',
-    loadChildren: () => import('./salon/booking/booking.module').then( m => m.BookingPageModule)
+    path: 'booking',
+    loadChildren: () => import('./booking/booking.module').then( m => m.BookingPageModule)
   },
   {
     path: 'account',

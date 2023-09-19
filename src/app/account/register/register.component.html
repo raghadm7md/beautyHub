@@ -13,7 +13,7 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6 col-xl-5 justify-content-center d-flex"> -->
-          <ion-card class="buttom-card" *ngIf="!showInputNumber">
+          <ion-card class="buttom-card" *ngIf="showInputNumber">
             <ion-card-content>
               <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
                 <div class="mb-5 mt-3">
@@ -36,7 +36,7 @@
             </ion-card-content>
           </ion-card>
         
-          <ion-card class="buttom-card" *ngIf="showInputNumber">
+          <ion-card class="buttom-card" *ngIf="!showInputNumber">
             <ion-card-header>
               <ion-card-title class="light-text">Enter Code</ion-card-title>
             </ion-card-header>
