@@ -5,6 +5,7 @@ import { ModalController } from '@ionic/angular';
 import { BookingService } from 'src/app/booking/booking.service';
 import { SalonServiceService } from '../../salon-service.service';
 import { ISalon, IService, IStylist } from '../../salon.model';
+import { concatMap } from "rxjs";
 
 @Component({
   selector: 'app-service-details',
@@ -14,7 +15,6 @@ import { ISalon, IService, IStylist } from '../../salon.model';
 export class ServiceDetailsComponent implements OnInit {
 
   @Input() serviceId: number;
-  @Input() salonId: number
   serviceDetails: IService
   allPage: boolean = false
   salonDetails: ISalon;
@@ -26,17 +26,15 @@ export class ServiceDetailsComponent implements OnInit {
   constructor(private router: Router, private modalCtrl: ModalController,
     private activatedroute: ActivatedRoute,
     private salonservice: SalonServiceService,
-    private bookingservise : BookingService) { }
+    private bookingservise: BookingService) { }
 
   ngOnInit() {
     this.activatedroute.params.subscribe(params => {
       if (Object.keys(params).length != 0) {
         this.allPage = params['allPage']
         this.serviceId = params['serviceId']
-        this.salonId = params['id']
       }
     })
-    this.salonservice.checkServiceAvailability(this.serviceId).subscribe( isAvailable =>  console.log(isAvailable))
     this._fetchServiceDetails()
     this.stylistForm = new FormGroup({
       stylistName: new FormControl(null, Validators.required),
@@ -44,7 +42,7 @@ export class ServiceDetailsComponent implements OnInit {
   }
 
   viewServiceDetailsPage() {
-    this.router.navigate([`/salon-service/${this.salonId}/service-details`, { allPage: true, serviceId: this.serviceId }])
+    this.router.navigate([`/tab-nav/salons/service-details`, { allPage: true, serviceId: this.serviceId }])
     this.modalCtrl.dismiss();
   }
 
@@ -59,32 +57,24 @@ export class ServiceDetailsComponent implements OnInit {
   //   }
   // }
 
-  selectStylist(event) {
-    //TODO: get stylist id to send with booking request
-  }
+
 
   private _fetchServiceDetails() {
-    this.salonservice.fetchServiceDetails(this.serviceId).subscribe(serviceDeatils => {
-      this.serviceDetails = serviceDeatils
-    })
-
-    this.salonservice.fetchSalonDetails(Number(this.salonId)).subscribe(salonDetails => {
-      this.salonDetails = salonDetails
-    }, (error) => {
-      //TODO : handle error 
-    })
-
-    this.salonservice.fetchServiceStylist(Number(this.serviceId)).subscribe(StylistList => {
-      this.StylistList = StylistList
-    })
-    
+    this.salonservice.fetchServiceDetails(this.serviceId)
+      .pipe(
+        concatMap((serviceDeatils) => {
+          this.serviceDetails = serviceDeatils
+          return this.salonservice.fetchSalonDetails(serviceDeatils.saloonId);
+        })
+      )
+      .subscribe((salonDetails) => {
+        this.salonDetails = salonDetails
+      });
   }
 
-  submitForm() {
-    //myObject.newKey = 'New Value';
-    this.serviceDetails['stylist']= this.stylistForm.get('stylistName')?.value
-    this.bookingservise.updateData(this.serviceDetails );
-    this.router.navigate([`/booking/${this.serviceId}`])
+  bookingService() {
+    this.bookingservise.updateData(this.serviceDetails);
+    this.router.navigate([`/tab-nav/booking/${this.serviceId}`])
   }
 
 }

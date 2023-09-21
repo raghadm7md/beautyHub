@@ -7,7 +7,7 @@ import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   {
-    path: 'history',
+    path: '',
     component: BookingHistoryComponent
   },
   {

@@ -1,8 +1,8 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Booking History</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -25,13 +25,14 @@
               <div class="card-body">
                 <h4 class="card-title mt-0 fw-bold">{{booking?.salonName}}</h4>
                 <h4 class="card-title mt-0"> Service : {{booking?.BookingService[0]?.serviceName}}</h4>
+                <h4 class="card-title mt-0"> Stylist : {{booking?.BookingService[0]?.stylistName}}</h4>
                 <div class="row" >
-                  <div class="col-7">
-                    <p>Date: {{booking?.bookingDate | date:'MMM d, y'}}</p>
+                  <div class="col-12">
+                    <p>Date and time : {{booking?.bookingDate}}</p>
                   </div>
-                  <div class="col-5">
-                    <p>Time:</p>
-                  </div>
+                  <!-- <div class="col-6">
+                    <p>Time: {{booking?.bookingDate | date:'shortTime'}}</p>
+                  </div> -->
                 </div>
                 <hr>
                 <div class="row" >

@@ -1,8 +1,8 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Salons</ion-title>
-  </ion-toolbar>
-</ion-header>
+  <!-- <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title>Salons</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -18,7 +18,7 @@
               <img class="img-card" [src]="salon.logo">
               <div class="card-body light-text ">
                     <div class="float-end">
-                      <button href="javascript: void(0);" class="btn btn-primary btn-rounded btn-sm" [routerLink]="['/salon-service',salon.saloonId]" >View Services</button>
+                      <button href="javascript: void(0);" class="btn btn-primary btn-rounded btn-sm" [routerLink]="['/tab-nav/salons/service',salon.saloonId]" >View Services</button>
                     </div>
                     <h4 class="card-title mt-0">{{salon.nameEn}}</h4>
                 <div class="row" >

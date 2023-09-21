@@ -1,13 +1,13 @@
-
+<!-- 
   <ion-header [translucent]="true" *ngIf="allPage">
   <ion-toolbar>
     <ion-title>Service details</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
   <ion-content class="ion-padding">
 
   <div class="card card-light dark-text fw-bold"*ngIf="!allPage">
-      <ion-card-header> 
+      <div class="card-header"> 
         <div class="float-end">
           <ion-chip>
             <ion-label>{{salonDetails?.nameEn}}</ion-label>
@@ -17,8 +17,8 @@
           </ion-chip>
       </div>
       <h3 class="fw-bold px-2 mb-0 mt-2">{{serviceDetails?.nameEn}}</h3>
-      </ion-card-header>
-      <ion-card-content>
+    </div>
+      <div class="card-body">
         <div class="row">
           <div class="col-6">
            <span> Price : {{serviceDetails?.price}} SAR </span>
@@ -41,7 +41,7 @@
             <button type="button" class="btn btn-warning btn-rounded"style="width: 100%;" (click)="setOpen(true)" >Add To Cart</button>
           </div>
         </div> -->
-      </ion-card-content>
+      </div>
   </div>
 
     <div class="card card-light dark-text" *ngIf="!allPage">
@@ -54,8 +54,8 @@
       </ion-card-content>
     </div>
 
-    <ion-card *ngIf="allPage">
-      <ion-card-header>
+    <div class="card card-light dark-text fw-bold" *ngIf="allPage">
+      <div class="card-header"> 
         <div class="float-end">
           <ion-chip>
             <ion-label>{{salonDetails?.nameEn}}</ion-label>
@@ -65,8 +65,8 @@
           </ion-chip>
       </div>
         <ion-card-title>{{serviceDetails?.nameEn}}</ion-card-title>
-      </ion-card-header> 
-      <ion-card-content>
+    </div> 
+      <div class="card-body">
         <div class="row">
           <div class="col-6">
            <span> Price : {{serviceDetails?.price}} SAR </span>
@@ -75,36 +75,37 @@
             <span>Deposit: {{serviceDetails?.deposit}} SAR </span>
           </div>
         </div>
-      </ion-card-content> 
-    </ion-card>
-    <form [formGroup]="stylistForm" (ngSubmit)="submitForm()" novalidate>
+      </div> 
+    </div>
 
-    <ion-card *ngIf="allPage" >
-      <ion-card-content>
-        <h2 class="subTitle">About</h2>
+
+    <!-- <form [formGroup]="stylistForm" (ngSubmit)="submitForm()" novalidate> -->
+      <div class="card card-light dark-text fw-bold" *ngIf="allPage" >
+        <div class="card-body">
+        <h3>About</h3>
         <p>{{serviceDetails?.descriptionEn}}</p>
-        <h6>Service Avalable time : </h6><p>from {{serviceDetails?.serviceAvailabilityStart}} to {{serviceDetails?.serviceAvailabilityEnd}}</p>
-       <p class="d-flex align-items-center"> <span>Home service :</span> <ion-icon *ngIf="serviceDetails?.isAvailableAtHome==1" style="color:green" name="checkmark-circle"></ion-icon>
-        <ion-icon *ngIf="serviceDetails?.isAvailableAtHome==0" style="color:red" name="close-circle"></ion-icon></p>
-        <h2 class="subTitle" >Stylist: </h2>
-
-        <ion-radio-group  (ionChange)="selectStylist($event)" formControlName="stylistName" >
-          <ion-item *ngFor="let item of StylistList">
-            <ion-radio [value]="item.stylistId" labelPlacement="end" ></ion-radio>
-            <ion-label>{{item.nameEn}}</ion-label>
-          </ion-item>
-        </ion-radio-group>
-        <ion-radio-group value="custom-checked">
-        </ion-radio-group>
-      </ion-card-content> 
-    </ion-card>
+        <h6>Service Avalable time : </h6>
+        <div class="row">
+          <div class="col-6">
+            <p>From: {{serviceDetails?.serviceAvailabilityStart}}</p>
+          </div>
+          <div class="col-6">
+            <p>To: {{serviceDetails?.serviceAvailabilityEnd}}</p>
+          </div>
+        </div>
+        
+       <p class="d-flex align-items-center"> <span>Home Service Available?  </span>
+        <ion-icon *ngIf="serviceDetails?.isAvailableAtHome==1" class="dark-text" style="font-size: 24px;font-weight: 500;" name="checkmark-outline"></ion-icon>
+        <ion-icon *ngIf="serviceDetails?.isAvailableAtHome==0" class="dark-text" style="font-size: 24px; font-weight: 500;" name="close-outline"></ion-icon></p>
+        </div> 
+      </div>
 
     <div class="row mt-4" *ngIf="allPage" >
       <div class="col-12">
-        <button class="btn btn-warning btn-rounded"style="width: 100%;">Select date and time</button>
+        <button class="btn btn-secondary btn-rounded" type="button"  (click)="bookingService()" style="width: 100%;">Book now</button>
       </div>
     </div>
-  </form>
+  <!-- </form> -->
 
   </ion-content>
   <ion-alert
