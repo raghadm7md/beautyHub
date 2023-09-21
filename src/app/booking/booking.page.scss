@@ -3,6 +3,11 @@
     margin: 1%;
 }
 
+:host .calendar-day.calendar-day-active  {
+    color: var(--ion-color-step-850) !important;
+    font-weight: 600;
+}
+
 .wrapper {
     display: grid;
     height: 100%;
@@ -12,7 +17,7 @@
   }
 
   .career_badge {
-      background-color: var(--ion-color-rose) !important ;
+      background-color:#8480F2 !important ;
     & {
         white-space: nowrap !important;
     }

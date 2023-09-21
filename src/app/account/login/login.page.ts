@@ -59,16 +59,14 @@ export class LoginPage implements OnInit {
   async onLogin() {
     const loading = await this.loadingCtrl.create({
       message: 'Authenticating..',
-      duration: 3000,
     });
     loading.present();
-
     this.authService
     .loginUser({emailAddress : this.loginForm.value.email} , this.otp)
     .subscribe(
       (val) => {
         if (val.loggedIn) {
-          this.router.navigate(['/salons'])
+          this.router.navigate(['/tab-nav/salons'])
           loading.dismiss()
         }
       },

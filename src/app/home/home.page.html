@@ -1,20 +1,35 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+  <ion-toolbar class="text-center">
+    <!-- <ion-title> -->
+      <img src="/assets/images/beautyHub-logo.svg"> 
+    <!-- </ion-title> -->
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<!-- <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">On boarding</ion-title>
     </ion-toolbar>
   </ion-header>
   <div id="container">
-    <!-- <strong>Have Accoount?</strong> -->
-    <!-- <br> -->
+    <strong>Have Accoount?</strong>
+    <br>
     <button type="button" class="btn btn-soft-warning waves-effect waves-light" routerLink="/login" >Start</button>
   </div>
+</ion-content> -->
+
+<ion-content>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="salons">
+        <ion-icon name="storefront-outline"></ion-icon>
+        <ion-label>Salons</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="booking">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <ion-label>History</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>

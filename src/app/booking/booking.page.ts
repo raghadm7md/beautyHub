@@ -1,9 +1,10 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { AuthService, JWTDeCode } from 'src/app/account/auth.service';
+import { SalonServiceService } from '../salon/salon-service.service';
 import { IBook } from './booking.model';
 import { BookingService } from './booking.service';
 
@@ -26,13 +27,22 @@ export class BookingPage implements OnInit {
   selectedTime: any;
   userId: any;
   formatedTime: string;
+  StylistList: any;
+  stylist: any;
 
   constructor(private activeroute: ActivatedRoute,
     private loadingCtrl: LoadingController,
     private bookingservise: BookingService,
-    private authservice: AuthService) {
+    private salonservice: SalonServiceService,
+    private authservice: AuthService,
+    private alertController: AlertController,
+    private router: Router) {
+      this.seviceID=Number(this.activeroute.snapshot.paramMap.get('seviceID'))
     this.bookingservise.data.subscribe(data => {
-      this.data = data;
+      if (Object.keys(data).length === 0){
+        this.router.navigate([`/tab-nav/salons/service-details`, { allPage: true, serviceId: this.seviceID }])
+      }
+      this.data = data;  
     });
   }
 
@@ -44,34 +54,27 @@ export class BookingPage implements OnInit {
     })
     this.seviceID = Number(this.activeroute.snapshot.paramMap.get('seviceID'))
     this.authservice.getUserID().subscribe(user => this.userId = user);
-
-
-
-
+    this.salonservice.fetchServiceStylist(this.seviceID).subscribe(StylistList => {
+      this.StylistList = StylistList
+    })
   }
 
   onSelectTime(time) {
     this.selectedTime = time
     // Time in 24-hour format
     var time24 = time;
-
     // Split the time into hour and minute components
     var timeComponents = time24.split(':');
     var hour24 = parseInt(timeComponents[0]);
     var minute = timeComponents[1];
-
     // Convert the hour to 12-hour format
     var hour12 = (hour24 % 12) || 12;
-
     // Determine if it is AM or PM
     var period = (hour24 < 12) ? 'AM' : 'PM';
-
     // Build the converted time string
     var time12 = hour12 + ':' + minute + ' ' + period;
-
     // Print the converted time
     this.formatedTime = time12
-
   }
 
   async setDate(event) {
@@ -87,8 +90,11 @@ export class BookingPage implements OnInit {
       this.loading.dismiss()
     });
   }
+  selectStylist(event) {
+    this.stylist = event.target.value
+  }
 
-  onBookingService() {
+  async onBookingService() {
     let bookingData = {
       userId: this.userId.id,
       salonId: this.data.saloonId,
@@ -98,12 +104,26 @@ export class BookingPage implements OnInit {
         {
           serviceId: this.data.serviceId,
           startTime: this.selectedDate + " " + this.formatedTime,
-          stylistId: this.data.stylist
+          stylistId: this.stylist
         }
       ]
     }
-    this.bookingservise.createBooking(bookingData).subscribe(bookingData => {}
-      // display successful msg then redirection to booking history ,
+    const loading = await this.loadingCtrl.create({
+      message: 'Booking..',
+    });
+    loading.present();
+    this.bookingservise.createBooking(bookingData).subscribe(bookingData => {
+      this.router.navigate(['/tab-nav/booking'])
+      loading.dismiss()
+    },async (error)=>{
+      loading.dismiss()      
+      const alert = await this.alertController.create({
+        header: 'Alert',
+        message: error.error.message,
+        buttons: ['OK'],
+      });
+      await alert.present();
+    }
     );
 
 
