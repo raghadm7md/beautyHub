@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseURL:'https://beautyhubdev.azurewebsites.net/api/'
+  baseURL:'https://beautyhubbackend.azurewebsites.net/api/'
 };
