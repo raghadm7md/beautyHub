@@ -72,4 +72,7 @@ npm-debug.log*
 /plugins
 /www
 /.angular/cache
+/.firebase
+/android
+/ios
 
