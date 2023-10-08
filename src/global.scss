@@ -115,54 +115,6 @@ ion-datetime {
 }
 
 
-// ion-toolbar {
-//     --background: #702a68
-// }
-
-
-// ion-title.md.title-default.hydrated {
-//     color: white;
-// }
-
-// ion-title.ios.title-default.hydrated {
-//     color: white;
-// }
-
-
-// ion-content{
-
-//     --ion-background-color:hsl(320, 100%, 99%);
-// }
-
-// ion-footer{
-
-//     --ion-background-color:hsl(320, 100%, 99%);
-// }
-
-
-// ion-content {
-//     --background: #e9e9e9;
-// }
-  
-//   .ion-color-rose {
-//     --ion-color-base: var(--ion-color-rose);
-//     --ion-color-base-rgb: var(--ion-color-rose-rgb);
-//     --ion-color-contrast: var(--ion-color-rose-contrast);
-//     --ion-color-contrast-rgb: var(--ion-color-rose-contrast-rgb);
-//     --ion-color-shade: var(--ion-color-rose-shade);
-//     --ion-color-tint: var(--ion-color-rose-tint);
-//   }
-  
-//   ion-datetime {
-//     --background:var(--ion-background-color);
-//     --background-rgb: 255, 241, 242;
-//     border-radius: 16px;
-//     box-shadow: rgba(var(--ion-color-step-950), 0.3) 0px 10px 15px -3px;
-//     margin: auto;
-//     color: #8480F2;
-//   }
-
-
 .btn-primary,
 .btn-white,
 .btn-secondary,
@@ -298,4 +250,21 @@ button.btn.btn-white.btn-rounded {
 
 ion-toolbar.toolbar-title-default.ios.in-toolbar.hydrated {
     height: 70px;
+}
+
+
+ion-button {
+    --background: #ede9f000;
+    --background-hover: #6c52a35d;
+    --background-activated: #8480F2;
+    --background-focused: #6c52a3;
+    --color: #220C5A;
+}
+
+.search-bar{
+    width: 220px;
+    height: 24px;
+    border-radius: 60px;
+    border: 1px solid rgba(34, 12, 90, 0.70);
+    background: rgba(34, 12, 90, 0.10);
 }

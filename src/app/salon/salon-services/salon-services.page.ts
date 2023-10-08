@@ -1,9 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IonModal, ModalController } from '@ionic/angular';
+import { IonModal, LoadingController, ModalController } from '@ionic/angular';
 import { SalonServiceService } from '../salon-service.service';
 import { ISalon, IService } from '../salon.model';
 import { ServiceDetailsComponent } from './service-details/service-details.component';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+
+
 
 
 @Component({
@@ -17,13 +21,28 @@ export class SalonServicesPage implements OnInit {
   @ViewChild(IonModal) modal: IonModal;
   salonId: string | null;
   servicesList: IService[];
+  private searchSubject = new Subject<string>();
+  private readonly debounceTimeMs = 1000;
+  inputText: string = '';
+
+
+
+
   constructor(private modalController: ModalController,
     private salonservice : SalonServiceService,
-    private activeroute : ActivatedRoute ) { }
+    private activeroute : ActivatedRoute,
+    private loadingCtrl: LoadingController ) { }
 
   ngOnInit(){
     this.salonId=this.activeroute.snapshot.paramMap.get('id')
     this._fetchsalonDetails()
+    this.searchSubject.pipe(debounceTime(this.debounceTimeMs)).subscribe((searchValue) => {
+      this.performSearch(searchValue);
+    });
+  }
+
+  ngOnDestroy() {
+    this.searchSubject.complete();
   }
 
   async presentModal(serviceId:number) {
@@ -53,12 +72,24 @@ export class SalonServicesPage implements OnInit {
     this.modal.dismiss(person, 'confirm');
   }
 
+  onSearch() {
+    this.searchSubject.next(this.inputText);
+  }
+
+  async performSearch(searchValue: string) {
+    let loading = await this.loadingCtrl.create();
+    loading.present();
+    this.salonservice.fetchServiceOnsearch(this.salonId,searchValue)
+      .subscribe(searchResult => {
+        this.servicesList = searchResult
+        loading.dismiss()
+      });
+
+  }
+
   private _fetchsalonDetails() {
     this.salonservice.fetchSalonDetails(Number(this.salonId)).subscribe(salonDetails=>{
-      this.salonDetails=salonDetails
-    },(error)=>{
-
-    })
+      this.salonDetails=salonDetails})
 
     this.salonservice.fetchSalonServices(Number(this.salonId)).subscribe(serviceList=>{
       this.servicesList=serviceList      

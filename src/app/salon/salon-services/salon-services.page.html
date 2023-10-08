@@ -35,6 +35,16 @@
     </ion-card-content>
   </div>
 
+  <div class="row mb-3">
+    <div class="col-12 d-flex justify-content-between px-4">
+      <ion-button fill="clear" size="small"> <ion-icon name="filter-circle-outline"></ion-icon> </ion-button>
+      
+      <ng-template [ngTemplateOutlet]="searchInput"></ng-template>
+      <ion-button fill="clear" size="small"> <ion-icon name="search-outline"></ion-icon></ion-button>
+    </div>
+  </div>
+  
+
   <h3>Salon Service:</h3>
   <div class="wrapper">
     <ion-grid class="square">
@@ -66,3 +76,15 @@
 
 
 </ion-content>
+
+
+
+<ng-template #searchInput>
+  <div class="w-100 d-flex align-items-center">
+    <input type="text"
+    class="form-control search-bar"
+    placeholder="Search..."
+    [(ngModel)]="inputText" 
+    (input)="onSearch()" >
+  </div>
+</ng-template>

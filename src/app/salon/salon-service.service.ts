@@ -36,5 +36,13 @@ export class SalonServiceService {
   checkServiceAvailability(serviceId: number) {
     return this._http.post(`${this._baseURL}Booking/CheckServiceAvailability`, { serviceId: 1001 })
   }
+
+  fetchSalonOnsearch(saloonName:string):Observable<ISalon[]>{
+    return this._http.get<ISalon[]>(`${this._baseURL}Saloon?filterOn=name&filterQuery=${saloonName}&pageNumber=1&pageSize=1000`)
+  }
+
+  fetchServiceOnsearch(salonId,serviceName:string):Observable<IService[]>{
+    return this._http.get<IService[]>(`${this._baseURL}Service/Saloon/${salonId}?filterOn=ServicesName&filterQuery=${serviceName}`)
+  }
 }
 
