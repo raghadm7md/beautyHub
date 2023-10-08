@@ -10,6 +10,14 @@
       <ion-title size="large">Salons</ion-title>
     </ion-toolbar>
   </ion-header>
+  <div class="row mb-3">
+    <div class="col-12 d-flex justify-content-between px-4">
+      <ion-button fill="clear" size="small"> <ion-icon name="filter-circle-outline"></ion-icon> </ion-button>
+      
+      <ng-template [ngTemplateOutlet]="searchInput"></ng-template>
+      <ion-button fill="clear" size="small"> <ion-icon name="search-outline"></ion-icon></ion-button>
+    </div>
+  </div>
   <div class="wrapper">
     <ion-grid class="square">
       <ion-row class="ion-justify-content-center">
@@ -45,3 +53,14 @@
     </ion-item>
   </ion-list> -->
 </ion-content>
+
+
+<ng-template #searchInput>
+      <div class="w-100 d-flex justify-content-center align-items-center">
+        <input type="text"
+        class="form-control search-bar"
+        placeholder="Search..."
+        [(ngModel)]="inputText" 
+        (input)="onSearch()" >
+      </div>
+</ng-template>
