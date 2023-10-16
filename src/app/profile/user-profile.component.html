@@ -1,0 +1,43 @@
+<ion-content class="ion-padding">
+
+  <div class="row py-2 mt-5">
+    <div class="col-12 d-flex justify-content-center align-items-center px-4">
+      <img src="/assets/icon/user.svg"> 
+    </div>
+  </div>
+
+  <div class="card card-light dark-text fw-bold">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12">
+          Name : {{userInfo?.name}}
+        </div>
+        <div class="col-12">
+          Email : {{userInfo?.email}}
+        </div>
+      </div>
+    </div>
+</div>
+
+<ion-item detail="false">
+  <ion-label style="font-weight: 700;">
+    <ion-text>
+      <ion-icon name="globe-outline"></ion-icon> En
+    </ion-text>
+  </ion-label>
+</ion-item>
+<ion-item detail="false" (click)="presentModal()">
+  <ion-label  style="font-weight: 700;">
+    <ion-text>
+      <ion-icon name="settings-outline"></ion-icon> Settings
+    </ion-text>
+  </ion-label>
+</ion-item>
+
+<div class="row mt-5">
+  <div class="col-12 d-flex justify-content-center align-items-center px-4">
+    <button class="btn btn-primary btn-rounded w-50" (click)="logOut()">Log Out</button>
+  </div>
+</div>
+
+</ion-content>
