@@ -1,8 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="text-center">
-    <!-- <ion-title> -->
-      <img src="/assets/images/beautyHub-logo.svg"> 
-    <!-- </ion-title> -->
+    <!-- <ion-buttons slot="start">
+      <ion-button fill="clear" size="small"> <ion-icon name="chevron-back-outline"></ion-icon> </ion-button>
+    </ion-buttons> -->
+    <ion-buttons slot="start">
+      <ion-back-button class="dark-text" defaultHref="#"></ion-back-button>
+    </ion-buttons>
+    <img src="/assets/images/beautyHub-logo.svg">     <ion-buttons slot="end">
+      <ion-button fill="clear" size="small" (click)="presentModal()"> <ion-icon name="person-circle-outline"></ion-icon></ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { IonModal, ModalController } from '@ionic/angular';
+import { UserProfileComponent } from '../profile/user-profile.component';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,25 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  @ViewChild(IonModal) modal: IonModal;
+  
+  constructor(private modalController: ModalController) {}
 
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: UserProfileComponent,
+      breakpoints: [0, 0.3, 0.5, 0.8],
+      initialBreakpoint: 0.8,
+      handle: true,
+      // componentProps: {
+      //   serviceId: serviceId,
+      //   salonId: this.salonId 
+      // }
+    });
+    await modal.present();
+  }
+
+  dismiss() {
+    this.modal.dismiss(null, 'dismiss');
+  }
 }
