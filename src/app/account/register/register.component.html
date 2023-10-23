@@ -1,46 +1,41 @@
 <ion-content [fullscreen]="true">
 
-  <div class="row" style="margin-top: 35%;">
-    <div class="col-12 d-flex justify-content-center align-items-center">
-      <h1 class="auth-title-page">
-        Register
-      </h1>
+  <div class="row mt-5 px-4">
+    <div class="col-12 d-flex justify-content-end align-items-center">
+      <img src="/assets/icon/icon-name.svg">  
     </div>
   </div>
-
-
-  <!-- <div class="account-pages my-5 pt-sm-5">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6 col-xl-5 justify-content-center d-flex"> -->
-          <ion-card class="buttom-card" *ngIf="showInputNumber">
-            <ion-card-content>
+    
+  <div class="row" style="margin-top: 35%;" *ngIf="showInputNumber">
+    <p class="fs-4 dark-text px-4" style="font-weight:700" >Sign In</p>
+      <div class="col-12 d-flex justify-content-center align-items-center">
               <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
                 <div class="mb-5 mt-3">
-                  <label class="col-form-label fs-3 auth-form-lable mb-3 light-text">Email</label>
+                  <label class="col-form-label fs-6 auth-form-lable mb-3 dark-text" >Enter Your Email <span class="invalid-field" *ngIf="submitted && registerForm.get('email')?.errors">This field is required <ion-icon name="alert-outline"></ion-icon> </span></label>
                   <input  type="email" id="email" class="form-control" placeholder="someone@example.com" formControlName="email">
                 </div>
                 <div class="row mt-5">
                   <div class="col-md-12">
-                    <button type="submit" class="btn btn-white btn-rounded"  style="width: 100%;">Next</button>
+                    <button type="submit" class="btn btn-primary btn-rounded"  style="width: 100%;">Next</button>
                   </div>
                 </div>
         
                 <div class="row mt-3" style="margin-top: 15% !important">
                   <div class="col-12" >
-                    <p class="d-flex align-items-center justify-content-center light-text fs-3">  Already have an account?<button class="btn btn-link light-text" [routerLink]="['/login']" routerLinkActive="router-link-active fs-6" >Log in</button></p>
+                    <p class="d-flex align-items-center justify-content-center dark-text fs-3">  Already have an account?<button class="btn btn-link secondary-text" [routerLink]="['/login']" routerLinkActive="router-link-active fs-6" >Log in</button></p>
                   </div>
                  
                 </div>
               </form>
-            </ion-card-content>
-          </ion-card>
+      </div>
+  </div>
+  
         
-          <ion-card class="buttom-card" *ngIf="!showInputNumber">
-            <ion-card-header>
-              <ion-card-title class="light-text">Enter Code</ion-card-title>
-            </ion-card-header>
-            <ion-card-content>
+  <div class="row" style="margin-top: 35%;" *ngIf="!showInputNumber">
+    <h3 class="dark-text text-center">Verify your email address</h3>
+    <p class="text-center">We sent you a 4 digit code to verify your email address <strong>({{registerForm.get('email')?.value}})</strong> Enter in the field below.</p>
+    <div class="col-12 d-flex justify-content-center align-items-center">
+  
               <form>
                 <div class="row mt-4">
                   <div class="col-md-12 text-center">
@@ -49,20 +44,11 @@
                 </div>
                 <div class="row mt-5 mb-4">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-white btn-rounded" (click)="sibmitOTP()" style="width: 100%;">Login</button>
+                    <button type="button" class="btn btn-primary btn-rounded" (click)="sibmitOTP()" style="width: 100%;">Sign Up</button>
                   </div>
                 </div>
         
               </form>
-            </ion-card-content>
-          </ion-card>
-<!--   
-        </div>
-      </div>
-    </div> -->
-  
-    <!-- end container -->
-  <!-- </div> -->
-  <!-- end page -->
-  
+    </div>
+  </div>
 </ion-content>

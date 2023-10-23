@@ -17,6 +17,7 @@ export class LoginPage implements OnInit {
   loading: boolean;
   errorMsg: string;
   loginForm: FormGroup;
+  submitted: boolean = false;
 
   constructor(private router: Router, 
     private authService: AuthService,
@@ -29,6 +30,11 @@ export class LoginPage implements OnInit {
   }
   
   async onSubmitNumber(){
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.loginForm.invalid) {      
+      return;
+    } else {
     const loading = await this.loadingCtrl.create({
       message: `Sending the OTP to ${this.loginForm.value.email}`,
     });
@@ -51,6 +57,7 @@ export class LoginPage implements OnInit {
       }
     }
   }
+  }
 
   onOtpChange(code: string) {
     this.otp=Number(code)
@@ -68,6 +75,7 @@ export class LoginPage implements OnInit {
         if (val.loggedIn) {
           this.router.navigate(['/tab-nav/salons'])
           loading.dismiss()
+          this.showInputNumber = true
         }
       },
       (error) => {

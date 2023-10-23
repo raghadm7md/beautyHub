@@ -10,64 +10,63 @@
  */
 
 /* Core CSS required for Ionic components to work properly */
-@import "@ionic/angular/css/core.css";
+@import '@ionic/angular/css/core.css';
 
 /* Basic CSS for apps built with Ionic */
-@import "@ionic/angular/css/normalize.css";
-@import "@ionic/angular/css/structure.css";
-@import "@ionic/angular/css/typography.css";
+@import '@ionic/angular/css/normalize.css';
+@import '@ionic/angular/css/structure.css';
+@import '@ionic/angular/css/typography.css';
 @import '@ionic/angular/css/display.css';
 
 /* Optional CSS utils that can be commented out */
-@import "@ionic/angular/css/padding.css";
-@import "@ionic/angular/css/float-elements.css";
-@import "@ionic/angular/css/text-alignment.css";
-@import "@ionic/angular/css/text-transformation.css";
-@import "@ionic/angular/css/flex-utils.css";
-@import "bootstrap";
+@import '@ionic/angular/css/padding.css';
+@import '@ionic/angular/css/float-elements.css';
+@import '@ionic/angular/css/text-alignment.css';
+@import '@ionic/angular/css/text-transformation.css';
+@import '@ionic/angular/css/flex-utils.css';
+@import 'bootstrap';
 
-@import "./theme/components/reboot";
-@import "./theme/components/backgrounds";
-@import "./theme/components/badge";
-@import "./theme/components/buttons";
-@import "./theme/components/card";
-@import "./theme/components/dropdown";
+@import './theme/components/reboot';
+@import './theme/components/backgrounds';
+@import './theme/components/badge';
+@import './theme/components/buttons';
+@import './theme/components/card';
+@import './theme/components/dropdown';
 // @import "./theme/components/nav";
 // @import "./theme/components/table";
-@import "./theme/components/pagination";
-@import "./theme/components/progress";
-
+@import './theme/components/pagination';
+@import './theme/components/progress';
 
 :root {
-  --ion-color-rose: #8480F2;
-  --ion-color-rose-rgb: 34,12,90;
-  --ion-color-rose-contrast: #FDFBF5;
-  --ion-color-rose-contrast-rgb: 253,251,245;
-  --ion-color-rose-shade: #6C52A3;
-  --ion-color-rose-tint: #8480F2;
+  --ion-color-rose: #8480f2;
+  --ion-color-rose-rgb: 34, 12, 90;
+  --ion-color-rose-contrast: #fdfbf5;
+  --ion-color-rose-contrast-rgb: 253, 251, 245;
+  --ion-color-rose-shade: #6c52a3;
+  --ion-color-rose-tint: #8480f2;
 
-//   --ion-text-color: #881337;
-//   --ion-text-color-rgb: 136, 19, 55;
+  //   --ion-text-color: #881337;
+  //   --ion-text-color-rgb: 136, 19, 55;
 
-//   --ion-color-step-50: #f9e6e9;
-//   --ion-color-step-100: #f3dbdf;
-//   --ion-color-step-150: #edd0d6;
-//   --ion-color-step-200: #e7c5cd;
-//   --ion-color-step-250: #e1bac3;
-//   --ion-color-step-300: #dbaeba;
-//   --ion-color-step-350: #d5a3b1;
-//   --ion-color-step-400: #cf98a7;
-//   --ion-color-step-450: #c98d9e;
-//   --ion-color-step-500: #c48295;
-//   --ion-color-step-550: #be778b;
-//   --ion-color-step-600: #b86c82;
-//   --ion-color-step-650: #b26178;
-//   --ion-color-step-700: #ac566f;
-//   --ion-color-step-750: #a64b66;
-//   --ion-color-step-800: #a03f5c;
-//   --ion-color-step-850: #9a3453;
-//   --ion-color-step-900: #94294a;
-//   --ion-color-step-950: #8e1e40;
+  //   --ion-color-step-50: #f9e6e9;
+  //   --ion-color-step-100: #f3dbdf;
+  //   --ion-color-step-150: #edd0d6;
+  //   --ion-color-step-200: #e7c5cd;
+  //   --ion-color-step-250: #e1bac3;
+  //   --ion-color-step-300: #dbaeba;
+  //   --ion-color-step-350: #d5a3b1;
+  //   --ion-color-step-400: #cf98a7;
+  //   --ion-color-step-450: #c98d9e;
+  //   --ion-color-step-500: #c48295;
+  //   --ion-color-step-550: #be778b;
+  //   --ion-color-step-600: #b86c82;
+  //   --ion-color-step-650: #b26178;
+  //   --ion-color-step-700: #ac566f;
+  //   --ion-color-step-750: #a64b66;
+  //   --ion-color-step-800: #a03f5c;
+  //   --ion-color-step-850: #9a3453;
+  //   --ion-color-step-900: #94294a;
+  //   --ion-color-step-950: #8e1e40;
 }
 
 .ion-color-rose {
@@ -81,39 +80,35 @@
 
 ion-datetime {
   --background: var(--ion-background-color);
-  --background-rgb: 253,251,245;
+  --background-rgb: 253, 251, 245;
   border-radius: 16px;
-//   box-shadow: rgba(var(--ion-color-rose-rgb), 0.3) 0px 10px 15px -3px;
+  //   box-shadow: rgba(var(--ion-color-rose-rgb), 0.3) 0px 10px 15px -3px;
 }
-
-
-
 
 //################################################
 
 .img-thumbnail {
-    padding: 0.25rem;
-    background-color: var(--bs-body-bg);
-    border: var(--bs-border-width) solid var(--bs-border-color);
-    border-radius: var(--bs-border-radius);
-    max-width: 100%;
-    height: 100%;
+  padding: 0.25rem;
+  background-color: var(--bs-body-bg);
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  max-width: 100%;
+  height: 100%;
 }
 
 .img-fluid {
-    max-width: 100%;
-    height: 100%;
-    padding: 0.25rem;
-    background-color: var(--bs-body-bg);
-    border: 1px solid var(--bs-gray-300);
-    border-radius: 0.25rem;
+  max-width: 100%;
+  height: 100%;
+  padding: 0.25rem;
+  background-color: var(--bs-body-bg);
+  border: 1px solid var(--bs-gray-300);
+  border-radius: 0.25rem;
 }
 
-.row{
-    width: 100%;
-    margin: 0px;
+.row {
+  width: 100%;
+  margin: 0px;
 }
-
 
 .btn-primary,
 .btn-white,
@@ -121,150 +116,157 @@ ion-datetime {
 .btn-danger,
 .btn-success,
 .btn-warning {
-    & {
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        font-weight: 500;
-        transition: .3s;
-        -webkit-transition: .3s;
-        -moz-transition: .3s;
-        -ms-transition: .3s;
-        -o-transition: .3s;
-    }
+  & {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    font-weight: 500;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+  }
 
-    &:focus {
-        box-shadow: 0 0 0  rgba(0, 0, 0, 0.35);
-        transform: translateY(5px);
-        -webkit-transform: translateY(5px);
-        -moz-transform: translateY(5px);
-        -ms-transform: translateY(5px);
-        -o-transform: translateY(5px);
-    }
+  &:focus {
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.35);
+    transform: translateY(5px);
+    -webkit-transform: translateY(5px);
+    -moz-transform: translateY(5px);
+    -ms-transform: translateY(5px);
+    -o-transform: translateY(5px);
+  }
 }
 
-.btn-primary{
-    --bs-btn-color: #FDFBF5;
-    --bs-btn-bg: #220C5A;
-    --bs-btn-border-color: #220C5A;
+.btn-primary {
+  --bs-btn-color: #fdfbf5;
+  --bs-btn-bg: #220c5a;
+  --bs-btn-border-color: #220c5a;
 }
 
-.btn-secondary{
-    --bs-btn-color: #FDFBF5;
-    --bs-btn-bg: #6C52A3;
-    --bs-btn-border-color: #6C52A3;
+.btn-secondary {
+  --bs-btn-color: #fdfbf5;
+  --bs-btn-bg: #6c52a3;
+  --bs-btn-border-color: #6c52a3;
 }
 
 .btn:hover {
-    color: #FDFBF5;
-    --bs-btn-hover-bg: #8480F2;
-    --bs-btn-hover-border-color: #8480F2;
+  color: #fdfbf5;
+  --bs-btn-hover-bg: #8480f2;
+  --bs-btn-hover-border-color: #8480f2;
 }
 
 .btn:focus {
-    color: #FDFBF5;
-    background-color: #8480F2;
-    border-color: #8480F2;
+  color: #fdfbf5;
+  background-color: #8480f2;
+  border-color: #8480f2;
 }
 
 .btn:active {
-    --bs-btn-active-color: #FDFBF5;
-    --bs-btn-active-bg: #8480F2;
-    --bs-btn-active-border-color: #8480F2;
+  --bs-btn-active-color: #fdfbf5;
+  --bs-btn-active-bg: #8480f2;
+  --bs-btn-active-border-color: #8480f2;
 }
 
 button.btn.btn-white.btn-rounded {
-    color: #220C5A;
-    background-color: #FDFBF5 !important;
+  color: #220c5a;
+  background-color: #fdfbf5 !important;
 }
 
 .form-control {
-    height: 50px;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid rgba(126, 134, 158, 0.4);
 }
 
-
-.buttom-card{
-    position: fixed;
-    width: 100%;
-    height: 62%;
-    left: 0px;
-    top: 324px;
-    border-radius: 0px 35px 0px 0px;
-    margin: 0px;
-    background-color: #6C52A3
+.buttom-card {
+  position: fixed;
+  width: 100%;
+  height: 62%;
+  left: 0px;
+  top: 324px;
+  border-radius: 0px 35px 0px 0px;
+  margin: 0px;
+  background-color: #6c52a3;
 }
 
-
-
-.light-text{
-    color: #FDFBF5;
+.light-text {
+  color: #fdfbf5;
 }
 
-.dark-text{
-    color: #220C5A !important;
+.dark-text {
+  color: #220c5a !important;
 }
 
-.secondary-text{
-    color:#6C52A3 !important
+.secondary-text {
+  color: #6c52a3 !important;
 }
 
-.card-secondary{
-    background-color: #6C52A3;
+.card-secondary {
+  background-color: #6c52a3;
 }
 
-.card-light{
-    background-color: #8480f252;
+.card-light {
+  background-color: #8480f252;
 }
-
 
 .badge-soft-success {
-    color: #198754;
-    background-color: rgba(25, 135, 84, 0.18);
-    border: #198754 solid;
-    border-radius: 5px;
-    padding: 3px;
+  color: #198754;
+  background-color: rgba(25, 135, 84, 0.18);
+  border: #198754 solid;
+  border-radius: 5px;
+  padding: 3px;
 }
 
-
-.badge-soft-danger{
-    color: #f46a6a;
-    background-color: #f46a6a2e;
-    border: #f46a6a solid;
-    border-radius: 5px;
-    padding: 3px;
+.badge-soft-danger {
+  color: #f46a6a;
+  background-color: #f46a6a2e;
+  border: #f46a6a solid;
+  border-radius: 5px;
+  padding: 3px;
 }
 
-.badge-light{
-    color: #8480f2;
-    background-color: #8480f252;
-    border: #8480f2 solid;
-    border-radius: 5px;
-    padding: 3px;
+.badge-light {
+  color: #8480f2;
+  background-color: #8480f252;
+  border: #8480f2 solid;
+  border-radius: 5px;
+  padding: 3px;
 }
 
-.badge-dark{
-    color: #220C5A;
-    background-color: #220c5a4b;
-    border: #220C5A solid;
-    border-radius: 5px;
-    padding: 3px;
+.badge-dark {
+  color: #220c5a;
+  background-color: #220c5a4b;
+  border: #220c5a solid;
+  border-radius: 5px;
+  padding: 3px;
 }
 
 ion-toolbar.toolbar-title-default.ios.in-toolbar.hydrated {
-    height: 70px;
+  height: 70px;
 }
-
 
 ion-button {
-    --background: #ede9f000;
-    --background-hover: #6c52a35d;
-    --background-activated: #8480F2;
-    --background-focused: #6c52a3;
-    --color: #220C5A;
+  --background: #ede9f000;
+  --background-hover: #6c52a35d;
+  --background-activated: #8480f2;
+  --background-focused: #6c52a3;
+  --color: #220c5a;
 }
 
-.search-bar{
-    width: 220px;
-    height: 24px;
-    border-radius: 60px;
-    border: 1px solid rgba(34, 12, 90, 0.70);
-    background: rgba(34, 12, 90, 0.10);
+.search-bar {
+  width: 220px;
+  height: 24px;
+  border-radius: 60px;
+  border: 1px solid rgba(34, 12, 90, 0.7);
+  background: rgba(34, 12, 90, 0.1);
+}
+
+.invalid-field {
+  font-size: 12px;
+  color: #dc3545;
+  font-weight: 400;
+}
+
+ion-content {
+  --background: url(./assets/images/pages-background.png) 0 0/100% 100%
+    no-repeat;
 }

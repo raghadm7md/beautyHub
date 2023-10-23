@@ -7,3 +7,10 @@
 .auth-form-lable{
     font-weight: 600;
 }
+
+ion-content{
+    // --ion-background-color:#702a68;
+    // ion-content.background{
+        --background: url(../../../assets/images/BackShadow.png) 0 0/100% 100% no-repeat;
+    // }
+}

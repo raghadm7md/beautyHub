@@ -11,11 +11,11 @@ import { AuthService } from '../auth.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent  implements OnInit {
+export class RegisterComponent implements OnInit {
 
-  otp:number
-  showInputNumber: boolean=true
-  registerForm : FormGroup
+  otp: number
+  showInputNumber: boolean = true
+  registerForm: FormGroup
   submitted = false;
   errorMsg = "";
   error = false;
@@ -23,61 +23,57 @@ export class RegisterComponent  implements OnInit {
   loading: boolean;
 
 
-  constructor(private authservice : AuthService, 
+  constructor(private authservice: AuthService,
     private loadingCtrl: LoadingController,
-    private router : Router) { }
+    private router: Router) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.registerForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
     });
   }
 
-  get f() {
-    return this.registerForm.controls;
-  }
 
   onOtpChange(code: string) {
-    this.otp=Number(code)
+    this.otp = Number(code)
   }
 
   async onSubmit() {
-    const loading = await this.loadingCtrl.create({
-      message: `Sending the OTP to ${this.registerForm.value.email}`
-    });
-    loading.present();
     this.submitted = true;
     if (this.registerForm.invalid) {
-      this.loading = false;   
-      loading.dismiss()   
+      this.loading = false;
       return;
     } else {
-      try {        
+      const loading = await this.loadingCtrl.create({
+        message: 'Sending the OTP'
+      });
+      loading.present();
+      try {
         await lastValueFrom(
-          this.authservice.sendRegisterOTP({emailAddress : this.registerForm.value.email})
+          this.authservice.sendRegisterOTP({ emailAddress: this.registerForm.value.email })
         );
         this.showInputNumber = false
         loading.dismiss()
         this.loading = false;
-      } catch (err) {        
+      } catch (err) {
         this.error = true;
         this.errorMsg = "Something Went Wrong Try Again Later";
       }
     }
   }
 
-  async sibmitOTP(){
+  async sibmitOTP() {
     const loading = await this.loadingCtrl.create({
       message: 'Authenticating..'
     });
     loading.present();
-    this.authservice.registerUser({emailAddress : this.registerForm.value.email}, this.otp).subscribe(registerInfo => {
-    this.router.navigate(["/login"]);
-    loading.dismiss()
-    },(error)=>{
+    this.authservice.registerUser({ emailAddress: this.registerForm.value.email }, this.otp).subscribe(registerInfo => {
+      this.router.navigate(["/login"]);
+      loading.dismiss()
+    }, (error) => {
       console.log(error);
     });
-    
+
   }
 
 }
